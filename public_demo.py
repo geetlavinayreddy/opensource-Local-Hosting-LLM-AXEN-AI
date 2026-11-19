@@ -1,5 +1,4 @@
 import json
-import os
 from datetime import datetime
 from urllib import error, request
 
@@ -239,14 +238,8 @@ with st.sidebar:
 
 if selected_name == "-- Create New --" or selected_name not in st.session_state.demo_systems:
     st.markdown('<div class="demo-title">Agentic System Builder</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<div class="demo-card">'
-        '<strong>Start with a CSV</strong>'
-        '<p>Use the sidebar to create a new agent system. The public demo keeps '
-        'all systems and conversations in memory for this browser session only.</p>'
-        '</div>',
-        unsafe_allow_html=True,
-    )
+    st.markdown("Connecting")
+    st.info("Use the sidebar to create your first Agentic System.")
 else:
     system = st.session_state.demo_systems[selected_name]
     st.markdown(f'<div class="demo-title">{selected_name}</div>', unsafe_allow_html=True)
