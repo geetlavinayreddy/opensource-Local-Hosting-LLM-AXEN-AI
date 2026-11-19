@@ -33,6 +33,7 @@ st.markdown(
         background: #0b0b0b;
         border-right: 1px solid var(--border);
         width: 330px;
+        padding: 18px 18px 32px 18px;
     }
     [data-testid="stHeader"] { background: transparent; }
     [data-testid="stMainBlockContainer"] { max-width: 1120px; }
@@ -63,6 +64,31 @@ st.markdown(
         border-color: var(--accent);
         color: #111111;
         font-weight: 700;
+    }
+    .sidebar-brand {
+        margin-bottom: 4px;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+    }
+    .sidebar-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 14px 0;
+    }
+    .sidebar-section {
+        margin-top: 18px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text);
+    }
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"] > div,
+    [data-testid="stFileUploader"] {
+        background: #0d0d0d !important;
+        border-color: var(--border) !important;
+        color: var(--text) !important;
     }
     </style>
     """,
@@ -176,16 +202,19 @@ def run_public_team(system, api_key, model, user_input):
 
 
 with st.sidebar:
-    st.markdown("## Agentic System Builder")
+    st.markdown('<div class="sidebar-brand">AXEN / Agentic System Builder</div>', unsafe_allow_html=True)
     st.caption(
         "Public demo: code is not executed, and systems and chats "
         "are kept only for this session."
     )
+    st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-section">Model connection</div>', unsafe_allow_html=True)
     api_key = st.text_input("OpenRouter API Key", type="password")
     st.caption("For testing without paid credits, use openrouter/free.")
     model = st.text_input("OpenRouter Model", value="openrouter/free")
 
-    st.markdown("---")
+    st.markdown('<div class="sidebar-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-section">Agent system</div>', unsafe_allow_html=True)
     system_names = list(st.session_state.demo_systems.keys())
     selected_name = st.selectbox(
         "Select Active System",
@@ -193,7 +222,7 @@ with st.sidebar:
     )
 
     if selected_name == "-- Create New --":
-        st.markdown("### Create New System")
+        st.markdown('<div class="sidebar-section">Create New System</div>', unsafe_allow_html=True)
         new_name = st.text_input(
             "System Name",
             placeholder="e.g. Market Research Team",
