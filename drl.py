@@ -278,8 +278,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WORKSPACE_DIR = os.path.join(BASE_DIR, "workspace")
 DATA_FILE = os.path.join(BASE_DIR, "agent_systems.json")
 AXEN_CSV_FILE = os.path.join(BASE_DIR, "axen.csv")
-LEGACY_JARVIS_CSV_FILE = os.path.join(BASE_DIR, "jarvis.csv")
-LEGACY_JARVICS_CSV_FILE = os.path.join(BASE_DIR, "jarvics.csv")
 os.makedirs(WORKSPACE_DIR, exist_ok=True)
 
 
@@ -386,24 +384,9 @@ def load_csv_agents(csv_path):
 
 def ensure_axen_system(data):
     if "axen" in data:
-        data.pop("jarvis", None)
-        data.pop("jarvics", None)
-        return data
-    if "jarvis" in data:
-        data["axen"] = data.pop("jarvis")
-        data.pop("jarvics", None)
-        save_data(data)
-        return data
-    if "jarvics" in data:
-        data["axen"] = data.pop("jarvics")
-        save_data(data)
         return data
 
     csv_file = AXEN_CSV_FILE
-    if not os.path.exists(csv_file):
-        csv_file = LEGACY_JARVIS_CSV_FILE
-    if not os.path.exists(csv_file):
-        csv_file = LEGACY_JARVICS_CSV_FILE
     if os.path.exists(csv_file):
         try:
             data["axen"] = {
