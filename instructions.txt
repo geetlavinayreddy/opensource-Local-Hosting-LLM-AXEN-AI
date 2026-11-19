@@ -1,0 +1,21 @@
+AXEN setup
+
+Create the environment in this folder:
+py -m venv agents
+
+Activate it in PowerShell:
+.\agents\Scripts\Activate.ps1
+
+Install the app dependencies:
+python -m pip install -U langchain-openrouter langchain-ollama langchain-core langgraph streamlit pandas
+
+Run the actual app file:
+python -m streamlit run drl.py
+
+The app automatically loads jarvics.csv as the "jarvics" system.
+For local AI, install Ollama, start it, and pull a model:
+ollama pull qwen2.5:7b
+The app defaults to Local Ollama. OpenRouter remains available as an alternative.
+
+Deactivate the environment:
+deactivate

@@ -1,0 +1,7 @@
+agents/
+workspace/
+__pycache__/
+*.pyc
+automation.db
+*.log
+agent_systems.json
