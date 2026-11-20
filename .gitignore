@@ -5,5 +5,3 @@ __pycache__/
 automation.db
 *.log
 agent_systems.json
-.env
-agromind.db
